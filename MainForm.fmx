@@ -1,0 +1,297 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 656
+  ClientWidth = 411
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnResize = FormResize
+  DesignerMasterStyle = 3
+  object TopToolBar: TToolBar
+    Size.Width = 411.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'toolbarstyle'
+    TabOrder = 0
+    OnClick = TopToolBarClick
+    object SpeedBtnRight: TSpeedButton
+      Action = NextTabAction1
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 363.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'arrowrighttoolbutton'
+    end
+    object SpeedBtnLeft: TSpeedButton
+      Action = PreviousTabAction1
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 315.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'arrowlefttoolbutton'
+    end
+    object SpeedButton1: TSpeedButton
+      Align = Left
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'nexttoolbuttonbordered'
+      Text = 'SpeedButton1'
+      OnClick = Expand1ButtonClick
+    end
+    object SpeedButton2: TSpeedButton
+      Align = Left
+      Position.X = 48.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'priortoolbuttonbordered'
+      Text = 'SpeedButton2'
+      OnClick = Collapse1ButtonClick
+    end
+  end
+  object TabControl1: TTabControl
+    Align = Top
+    Position.Y = 48.000000000000000000
+    Size.Width = 411.000000000000000000
+    Size.Height = 529.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'tabcontrolstyle'
+    TabHeight = 49.000000000000000000
+    TabIndex = 2
+    TabOrder = 1
+    TabPosition = Top
+    Sizes = (
+      411s
+      480s
+      411s
+      480s
+      411s
+      480s
+      411s
+      480s)
+    object HomeTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 102.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'HomeTab'
+      ExplicitSize.cx = 71.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+    object StructTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 102.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'StructTab'
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object ScrollBox: THorzScrollBox
+        Align = Client
+        Size.Width = 411.000000000000000000
+        Size.Height = 480.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 411.000000000000000000
+        Viewport.Height = 480.000000000000000000
+        object lvTree: TListView
+          ItemAppearanceClassName = 'TCustomizeItemObjects'
+          ItemEditAppearanceClassName = 'TCustomizeItemObjects'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          ItemSpaces.Left = 8.000000000000000000
+          ItemSpaces.Right = 0.000000000000000000
+          Align = Client
+          Size.Width = 411.000000000000000000
+          Size.Height = 480.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          OnResize = lvItemResize
+          ItemAppearanceObjects.ItemObjects.Detail.Visible = True
+          ItemAppearanceObjects.ItemObjects.Accessory.PlaceOffset.X = -24.000000000000000000
+          StyleLookup = 'listviewstyle'
+          OnItemClickEx = lvTreeItemClickEx
+        end
+      end
+    end
+    object GreekTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 102.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'GreekTab'
+      OnClick = GreekTabClick
+      ExplicitSize.cx = 70.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object lvGreek: TListView
+        ItemAppearanceClassName = 'TCustomizeItemObjects'
+        ItemEditAppearanceClassName = 'TCustomizeItemObjects'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Images = ImageList1
+        ItemSpaces.Left = 0.000000000000000000
+        ItemSpaces.Right = 0.000000000000000000
+        Align = Client
+        Size.Width = 411.000000000000000000
+        Size.Height = 480.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        OnResize = lvItemResize
+        ItemAppearanceObjects.ItemObjects.Text.Font.Family = 'Lucida Sans Unicode'
+        ItemAppearanceObjects.ItemObjects.Text.WordWrap = True
+        ItemAppearanceObjects.ItemObjects.Text.TextColor = claTeal
+        ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.X = 48.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Detail.Visible = True
+        ItemAppearanceObjects.ItemObjects.Image.Visible = True
+        ItemAppearanceObjects.ItemObjects.Accessory.Visible = True
+        ItemAppearanceObjects.ItemEditObjects.Text.Visible = False
+        ItemAppearanceObjects.ItemEditObjects.Detail.TextVertAlign = Leading
+        ItemAppearanceObjects.ItemEditObjects.Detail.Trimming = None
+        ItemAppearanceObjects.ItemEditObjects.Detail.Visible = True
+        ItemAppearanceObjects.ItemEditObjects.Detail.PlaceOffset.X = -40.000000000000000000
+        ItemAppearanceObjects.ItemEditObjects.Image.Visible = True
+        ItemAppearanceObjects.ItemEditObjects.GlyphButton.Width = 16.000000000000000000
+        ItemAppearanceObjects.ItemEditObjects.GlyphButton.Height = 16.000000000000000000
+        ItemAppearanceObjects.ItemEditObjects.GlyphButton.VertAlign = Trailing
+        ItemAppearanceObjects.ItemEditObjects.GlyphButton.Visible = True
+        ItemAppearanceObjects.ItemEditObjects.GlyphButton.PlaceOffset.X = 4.000000000000000000
+        ItemAppearanceObjects.ItemEditObjects.GlyphButton.PlaceOffset.Y = 17.000000000000000000
+        StyleLookup = 'listviewstyle'
+      end
+    end
+    object EngTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 105.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'EngTab'
+      OnClick = EngTabClick
+      ExplicitSize.cx = 59.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object lvButler: TListView
+        ItemAppearanceClassName = 'TCustomizeItemObjects'
+        ItemEditAppearanceClassName = 'TCustomizeItemObjects'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        ItemSpaces.Left = 0.000000000000000000
+        ItemSpaces.Right = 0.000000000000000000
+        Align = Client
+        Size.Width = 411.000000000000000000
+        Size.Height = 480.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = Leading
+        ItemAppearanceObjects.ItemObjects.Text.WordWrap = True
+        ItemAppearanceObjects.ItemObjects.Text.TextColor = claSteelblue
+        ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.X = 48.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Detail.Width = 48.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Detail.Visible = True
+        ItemAppearanceObjects.ItemObjects.Image.Visible = True
+        ItemAppearanceObjects.ItemObjects.Accessory.Visible = True
+        ItemAppearanceObjects.ItemObjects.GlyphButton.Enabled = False
+        StyleLookup = 'listviewstyle'
+      end
+    end
+  end
+  object StatusBar1: TStatusBar
+    Align = Top
+    Position.Y = 577.000000000000000000
+    ShowSizeGrip = False
+    Size.Width = 411.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+  end
+  object KBPanel: TPanel
+    Align = Top
+    Position.Y = 625.000000000000000000
+    Size.Width = 411.000000000000000000
+    Size.Height = 120.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'panelstyle'
+    TabOrder = 3
+  end
+  object StyleBook1: TStyleBook
+    Styles = <
+      item
+      end>
+    Left = 144
+    Top = 186
+  end
+  object ActionList1: TActionList
+    Left = 56
+    Top = 186
+    object NextTabAction1: TNextTabAction
+      Category = 'Tab'
+      TabControl = TabControl1
+      ShortCut = 16465
+    end
+    object PreviousTabAction1: TPreviousTabAction
+      Category = 'Tab'
+      TabControl = TabControl1
+      ShortCut = 16464
+    end
+  end
+  object ImageList1: TImageList
+    Source = <
+      item
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Width = 16
+            Height = 16
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+              61000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00A649444154384FA593891180200C0483CD58836D581115D98635580DE622E1
+              131174679447EEF2301AC7D00F263F661863C2F3C62D0388B6FDF02BA27599A9
+              956466508A159828A559306889CB8C801A8941AF38454B4397DC673107965BD0
+              B4945E31C78681236BA3C988186DF03DB80EF072480C8A6B94B7CC53A327B100
+              8314EC70493882E6CA78ED634FA61959064A5A123E57237BAA064A2CA92E064D
+              831EAA7F633F44278034AFD800532A6C0000000049454E44AE426082}
+            FileName = 'C:\Users\jeroe\Documents\Embarcadero\images\openbook.png'
+          end>
+        Name = 'openbook'
+      end>
+    Destination = <
+      item
+        Layers = <
+          item
+            Name = 'openbook'
+          end>
+      end>
+    Left = 256
+    Top = 177
+  end
+end

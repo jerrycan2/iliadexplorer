@@ -1,0 +1,50 @@
+inherited Form1_Windows: TForm1_Windows
+  DesignerMasterStyle = 3
+  inherited TabControl1: TTabControl
+    TabIndex = 0
+    Sizes = (
+      411s
+      480s
+      411s
+      480s
+      411s
+      480s
+      411s
+      480s)
+    inherited HomeTab: TTabItem
+      Size.Width = 71.000000000000000000
+      ExplicitSize.cx = 71.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+    inherited StructTab: TTabItem
+      Size.Width = 69.000000000000000000
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      inherited ScrollBox: THorzScrollBox
+        Viewport.Width = 411.000000000000000000
+        Viewport.Height = 480.000000000000000000
+      end
+    end
+    inherited GreekTab: TTabItem
+      IsSelected = False
+      Size.Width = 70.000000000000000000
+      ExplicitSize.cx = 70.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      inherited lvGreek: TListView
+        ItemAppearanceObjects.ItemObjects.Text.Visible = False
+        ItemAppearanceObjects.ItemObjects.GlyphButton.Visible = True
+        ItemAppearanceObjects.ItemEditObjects.Detail.Align = Center
+      end
+    end
+    inherited EngTab: TTabItem
+      Size.Width = 59.000000000000000000
+      ExplicitSize.cx = 59.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      inherited lvButler: TListView
+        ItemAppearanceObjects.ItemObjects.Text.Width = 200.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Detail.WordWrap = True
+        ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = 48.000000000000000000
+      end
+    end
+  end
+end

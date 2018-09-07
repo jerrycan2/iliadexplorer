@@ -1,0 +1,76 @@
+inherited Form1_NmXhdpiPh: TForm1_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 3
+  inherited TopToolBar: TToolBar
+    Size.Width = 400.000000000000000000
+    inherited SpeedBtnRight: TSpeedButton
+      Position.X = 352.000000000000000000
+    end
+    inherited SpeedBtnLeft: TSpeedButton
+      Position.X = 304.000000000000000000
+    end
+  end
+  inherited TabControl1: TTabControl
+    Size.Width = 400.000000000000000000
+    Sizes = (
+      400s
+      480s
+      400s
+      480s
+      400s
+      480s
+      400s
+      480s)
+    inherited HomeTab: TTabItem
+      Size.Width = 100.000000000000000000
+      ExplicitSize.cx = 71.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+    inherited StructTab: TTabItem
+      Size.Width = 100.000000000000000000
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      inherited ScrollBox: THorzScrollBox
+        Size.Width = 400.000000000000000000
+        Viewport.Width = 400.000000000000000000
+        Viewport.Height = 480.000000000000000000
+        inherited lvTree: TListView
+          Size.Width = 400.000000000000000000
+        end
+      end
+    end
+    inherited GreekTab: TTabItem
+      Size.Width = 100.000000000000000000
+      ExplicitSize.cx = 70.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      inherited lvGreek: TListView
+        Size.Width = 400.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Text.Visible = False
+        ItemAppearanceObjects.ItemObjects.Image.ScalingMode = Original
+        ItemAppearanceObjects.ItemObjects.Image.Width = 16.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Image.Height = 16.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Image.VertAlign = Leading
+        ItemAppearanceObjects.ItemObjects.GlyphButton.Visible = True
+        ItemAppearanceObjects.ItemEditObjects.Detail.Align = Center
+      end
+    end
+    inherited EngTab: TTabItem
+      Size.Width = 100.000000000000000000
+      ExplicitSize.cx = 59.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      inherited lvButler: TListView
+        Size.Width = 400.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Text.Width = 200.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Detail.WordWrap = True
+        ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = 48.000000000000000000
+      end
+    end
+  end
+  inherited StatusBar1: TStatusBar
+    Size.Width = 400.000000000000000000
+  end
+  inherited KBPanel: TPanel
+    Size.Width = 400.000000000000000000
+  end
+end

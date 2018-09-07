@@ -1,0 +1,36 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+# System Files
+.DS_Store
+Thumbs.db
+__history
+__recovery
+Android
+ENU
+NLD
+Win32
+Win64
+.idea
+*.orig
+*.dll
+*.png
+*.BMP
+*Copy*.pas
+*.groupproj
+*.local
+*.deployproj
+*.stat
+*.jpg
+*.png
+xxx*.*
+FMX.Presentation.Style.pas
+imagecontrolestyle01
+imgcontrolstyle1
+keystorefile01
+Edit1Style
+main.fmx.fff
+*.old
+ProjectGroup1_prjgroup.tvsconfig.xml
+*.gif
+puzzelhulp*.*
+bla*.*
+*.bup

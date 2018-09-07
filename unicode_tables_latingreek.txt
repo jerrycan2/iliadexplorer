@@ -1,0 +1,395 @@
+﻿//    const
+// Normalization Data for Latin & Greek (combined) characters Unicode ranges 0-$FF, $300-$3FF and $1F00-$2000
+// All chars not in FSourceChar are single and normal (compatibility chars not implemented here)
+// FSourceChar: character in question    FNfcChar: its canonical form, composed    FNfdChar: canonical form, decomposed
+// If sourcechar is not in the 1st array, use it as is. Then it cannot have combining marks.
+// all 3 arrays same length, indexes correspond.
+// Any second, third etc. chars in FNfdChar are nonspacingmarks. All nonspacingmarks are in the range $300-$36F
+// NB codepoint $0344 (COMBINING GREEK DIALYTIKA TONOS) has NFC of 2 characters(0308 0301), replaced here by $0344
+// data from the file 'NormalizationTest.txt' from the UCD at unicode.org
+      FSourceChar:  tWordArray = [
+        $00C0,$00C1,$00C2,$00C3,$00C4,$00C5,$00C7,$00C8,$00C9,$00CA,
+        $00CB,$00CC,$00CD,$00CE,$00CF,$00D1,$00D2,$00D3,$00D4,$00D5,
+        $00D6,$00D9,$00DA,$00DB,$00DC,$00DD,$00E0,$00E1,$00E2,$00E3,
+        $00E4,$00E5,$00E7,$00E8,$00E9,$00EA,$00EB,$00EC,$00ED,$00EE,
+        $00EF,$00F1,$00F2,$00F3,$00F4,$00F5,$00F6,$00F9,$00FA,$00FB,
+        $00FC,$00FD,$00FF,$0340,$0341,$0343,$0344,$0374,$037A,$037E,
+        $0384,$0385,$0386,$0387,$0388,$0389,$038A,$038C,$038E,$038F,
+        $0390,$03AA,$03AB,$03AC,$03AD,$03AE,$03AF,$03B0,$03CA,$03CB,
+        $03CC,$03CD,$03CE,$03D3,$03D4,$1F00,$1F01,$1F02,$1F03,$1F04,
+        $1F05,$1F06,$1F07,$1F08,$1F09,$1F0A,$1F0B,$1F0C,$1F0D,$1F0E,
+        $1F0F,$1F10,$1F11,$1F12,$1F13,$1F14,$1F15,$1F18,$1F19,$1F1A,
+        $1F1B,$1F1C,$1F1D,$1F20,$1F21,$1F22,$1F23,$1F24,$1F25,$1F26,
+        $1F27,$1F28,$1F29,$1F2A,$1F2B,$1F2C,$1F2D,$1F2E,$1F2F,$1F30,
+        $1F31,$1F32,$1F33,$1F34,$1F35,$1F36,$1F37,$1F38,$1F39,$1F3A,
+        $1F3B,$1F3C,$1F3D,$1F3E,$1F3F,$1F40,$1F41,$1F42,$1F43,$1F44,
+        $1F45,$1F48,$1F49,$1F4A,$1F4B,$1F4C,$1F4D,$1F50,$1F51,$1F52,
+        $1F53,$1F54,$1F55,$1F56,$1F57,$1F59,$1F5B,$1F5D,$1F5F,$1F60,
+        $1F61,$1F62,$1F63,$1F64,$1F65,$1F66,$1F67,$1F68,$1F69,$1F6A,
+        $1F6B,$1F6C,$1F6D,$1F6E,$1F6F,$1F70,$1F71,$1F72,$1F73,$1F74,
+        $1F75,$1F76,$1F77,$1F78,$1F79,$1F7A,$1F7B,$1F7C,$1F7D,$1F80,
+        $1F81,$1F82,$1F83,$1F84,$1F85,$1F86,$1F87,$1F88,$1F89,$1F8A,
+        $1F8B,$1F8C,$1F8D,$1F8E,$1F8F,$1F90,$1F91,$1F92,$1F93,$1F94,
+        $1F95,$1F96,$1F97,$1F98,$1F99,$1F9A,$1F9B,$1F9C,$1F9D,$1F9E,
+        $1F9F,$1FA0,$1FA1,$1FA2,$1FA3,$1FA4,$1FA5,$1FA6,$1FA7,$1FA8,
+        $1FA9,$1FAA,$1FAB,$1FAC,$1FAD,$1FAE,$1FAF,$1FB0,$1FB1,$1FB2,
+        $1FB3,$1FB4,$1FB6,$1FB7,$1FB8,$1FB9,$1FBA,$1FBB,$1FBC,$1FBE,
+        $1FC1,$1FC2,$1FC3,$1FC4,$1FC6,$1FC7,$1FC8,$1FC9,$1FCA,$1FCB,
+        $1FCC,$1FCD,$1FCE,$1FCF,$1FD0,$1FD1,$1FD2,$1FD3,$1FD6,$1FD7,
+        $1FD8,$1FD9,$1FDA,$1FDB,$1FDD,$1FDE,$1FDF,$1FE0,$1FE1,$1FE2,
+        $1FE3,$1FE4,$1FE5,$1FE6,$1FE7,$1FE8,$1FE9,$1FEA,$1FEB,$1FEC,
+        $1FED,$1FEE,$1FEF,$1FF2,$1FF3,$1FF4,$1FF6,$1FF7,$1FF8,$1FF9,
+        $1FFA,$1FFB,$1FFC,$1FFD
+        ];
+
+      FNfcChar:     tWordArray = [
+        $00C0,$00C1,$00C2,$00C3,$00C4,$00C5,$00C7,$00C8,$00C9,$00CA,
+        $00CB,$00CC,$00CD,$00CE,$00CF,$00D1,$00D2,$00D3,$00D4,$00D5,
+        $00D6,$00D9,$00DA,$00DB,$00DC,$00DD,$00E0,$00E1,$00E2,$00E3,
+        $00E4,$00E5,$00E7,$00E8,$00E9,$00EA,$00EB,$00EC,$00ED,$00EE,
+        $00EF,$00F1,$00F2,$00F3,$00F4,$00F5,$00F6,$00F9,$00FA,$00FB,
+        $00FC,$00FD,$00FF,$0300,$0301,$0313,$0344,$02B9,$037A,$003B,
+        $0384,$0385,$0386,$00B7,$0388,$0389,$038A,$038C,$038E,$038F,
+        $0390,$03AA,$03AB,$03AC,$03AD,$03AE,$03AF,$03B0,$03CA,$03CB,
+        $03CC,$03CD,$03CE,$03D3,$03D4,$1F00,$1F01,$1F02,$1F03,$1F04,
+        $1F05,$1F06,$1F07,$1F08,$1F09,$1F0A,$1F0B,$1F0C,$1F0D,$1F0E,
+        $1F0F,$1F10,$1F11,$1F12,$1F13,$1F14,$1F15,$1F18,$1F19,$1F1A,
+        $1F1B,$1F1C,$1F1D,$1F20,$1F21,$1F22,$1F23,$1F24,$1F25,$1F26,
+        $1F27,$1F28,$1F29,$1F2A,$1F2B,$1F2C,$1F2D,$1F2E,$1F2F,$1F30,
+        $1F31,$1F32,$1F33,$1F34,$1F35,$1F36,$1F37,$1F38,$1F39,$1F3A,
+        $1F3B,$1F3C,$1F3D,$1F3E,$1F3F,$1F40,$1F41,$1F42,$1F43,$1F44,
+        $1F45,$1F48,$1F49,$1F4A,$1F4B,$1F4C,$1F4D,$1F50,$1F51,$1F52,
+        $1F53,$1F54,$1F55,$1F56,$1F57,$1F59,$1F5B,$1F5D,$1F5F,$1F60,
+        $1F61,$1F62,$1F63,$1F64,$1F65,$1F66,$1F67,$1F68,$1F69,$1F6A,
+        $1F6B,$1F6C,$1F6D,$1F6E,$1F6F,$1F70,$03AC,$1F72,$03AD,$1F74,
+        $03AE,$1F76,$03AF,$1F78,$03CC,$1F7A,$03CD,$1F7C,$03CE,$1F80,
+        $1F81,$1F82,$1F83,$1F84,$1F85,$1F86,$1F87,$1F88,$1F89,$1F8A,
+        $1F8B,$1F8C,$1F8D,$1F8E,$1F8F,$1F90,$1F91,$1F92,$1F93,$1F94,
+        $1F95,$1F96,$1F97,$1F98,$1F99,$1F9A,$1F9B,$1F9C,$1F9D,$1F9E,
+        $1F9F,$1FA0,$1FA1,$1FA2,$1FA3,$1FA4,$1FA5,$1FA6,$1FA7,$1FA8,
+        $1FA9,$1FAA,$1FAB,$1FAC,$1FAD,$1FAE,$1FAF,$1FB0,$1FB1,$1FB2,
+        $1FB3,$1FB4,$1FB6,$1FB7,$1FB8,$1FB9,$1FBA,$0386,$1FBC,$03B9,
+        $1FC1,$1FC2,$1FC3,$1FC4,$1FC6,$1FC7,$1FC8,$0388,$1FCA,$0389,
+        $1FCC,$1FCD,$1FCE,$1FCF,$1FD0,$1FD1,$1FD2,$0390,$1FD6,$1FD7,
+        $1FD8,$1FD9,$1FDA,$038A,$1FDD,$1FDE,$1FDF,$1FE0,$1FE1,$1FE2,
+        $03B0,$1FE4,$1FE5,$1FE6,$1FE7,$1FE8,$1FE9,$1FEA,$038E,$1FEC,
+        $1FED,$0385,$0060,$1FF2,$1FF3,$1FF4,$1FF6,$1FF7,$1FF8,$038C,
+        $1FFA,$038F,$1FFC,$00B4
+        ];
+
+      FNfdChar: tWordArrayArray =  [
+        [$0041,$0300],		    	// (À; À; A◌̀; À; A◌̀; ) LATIN CAPITAL LETTER A WITH GRAVE
+        [$0041,$0301],              	// (Á; Á; A◌́; Á; A◌́; ) LATIN CAPITAL LETTER A WITH ACUTE
+        [$0041,$0302],              	// (Â; Â; A◌̂; Â; A◌̂; ) LATIN CAPITAL LETTER A WITH CIRCUMFLEX
+        [$0041,$0303],              	// (Ã; Ã; A◌̃; Ã; A◌̃; ) LATIN CAPITAL LETTER A WITH TILDE
+        [$0041,$0308],              	// (Ä; Ä; A◌̈; Ä; A◌̈; ) LATIN CAPITAL LETTER A WITH DIAERESIS
+        [$0041,$030A],              	// (Å; Å; A◌̊; Å; A◌̊; ) LATIN CAPITAL LETTER A WITH RING ABOVE
+        [$0043,$0327],              	// (Ç; Ç; C◌̧; Ç; C◌̧; ) LATIN CAPITAL LETTER C WITH CEDILLA
+        [$0045,$0300],              	// (È; È; E◌̀; È; E◌̀; ) LATIN CAPITAL LETTER E WITH GRAVE
+        [$0045,$0301],              	// (É; É; E◌́; É; E◌́; ) LATIN CAPITAL LETTER E WITH ACUTE
+        [$0045,$0302],              	// (Ê; Ê; E◌̂; Ê; E◌̂; ) LATIN CAPITAL LETTER E WITH CIRCUMFLEX
+        [$0045,$0308],              	// (Ë; Ë; E◌̈; Ë; E◌̈; ) LATIN CAPITAL LETTER E WITH DIAERESIS
+        [$0049,$0300],              	// (Ì; Ì; I◌̀; Ì; I◌̀; ) LATIN CAPITAL LETTER I WITH GRAVE
+        [$0049,$0301],              	// (Í; Í; I◌́; Í; I◌́; ) LATIN CAPITAL LETTER I WITH ACUTE
+        [$0049,$0302],              	// (Î; Î; I◌̂; Î; I◌̂; ) LATIN CAPITAL LETTER I WITH CIRCUMFLEX
+        [$0049,$0308],              	// (Ï; Ï; I◌̈; Ï; I◌̈; ) LATIN CAPITAL LETTER I WITH DIAERESIS
+        [$004E,$0303],              	// (Ñ; Ñ; N◌̃; Ñ; N◌̃; ) LATIN CAPITAL LETTER N WITH TILDE
+        [$004F,$0300],              	// (Ò; Ò; O◌̀; Ò; O◌̀; ) LATIN CAPITAL LETTER O WITH GRAVE
+        [$004F,$0301],              	// (Ó; Ó; O◌́; Ó; O◌́; ) LATIN CAPITAL LETTER O WITH ACUTE
+        [$004F,$0302],              	// (Ô; Ô; O◌̂; Ô; O◌̂; ) LATIN CAPITAL LETTER O WITH CIRCUMFLEX
+        [$004F,$0303],              	// (Õ; Õ; O◌̃; Õ; O◌̃; ) LATIN CAPITAL LETTER O WITH TILDE
+        [$004F,$0308],              	// (Ö; Ö; O◌̈; Ö; O◌̈; ) LATIN CAPITAL LETTER O WITH DIAERESIS
+        [$0055,$0300],              	// (Ù; Ù; U◌̀; Ù; U◌̀; ) LATIN CAPITAL LETTER U WITH GRAVE
+        [$0055,$0301],              	// (Ú; Ú; U◌́; Ú; U◌́; ) LATIN CAPITAL LETTER U WITH ACUTE
+        [$0055,$0302],              	// (Û; Û; U◌̂; Û; U◌̂; ) LATIN CAPITAL LETTER U WITH CIRCUMFLEX
+        [$0055,$0308],              	// (Ü; Ü; U◌̈; Ü; U◌̈; ) LATIN CAPITAL LETTER U WITH DIAERESIS
+        [$0059,$0301],              	// (Ý; Ý; Y◌́; Ý; Y◌́; ) LATIN CAPITAL LETTER Y WITH ACUTE
+        [$0061,$0300],              	// (à; à; a◌̀; à; a◌̀; ) LATIN SMALL LETTER A WITH GRAVE
+        [$0061,$0301],              	// (á; á; a◌́; á; a◌́; ) LATIN SMALL LETTER A WITH ACUTE
+        [$0061,$0302],              	// (â; â; a◌̂; â; a◌̂; ) LATIN SMALL LETTER A WITH CIRCUMFLEX
+        [$0061,$0303],              	// (ã; ã; a◌̃; ã; a◌̃; ) LATIN SMALL LETTER A WITH TILDE
+        [$0061,$0308],              	// (ä; ä; a◌̈; ä; a◌̈; ) LATIN SMALL LETTER A WITH DIAERESIS
+        [$0061,$030A],              	// (å; å; a◌̊; å; a◌̊; ) LATIN SMALL LETTER A WITH RING ABOVE
+        [$0063,$0327],              	// (ç; ç; c◌̧; ç; c◌̧; ) LATIN SMALL LETTER C WITH CEDILLA
+        [$0065,$0300],              	// (è; è; e◌̀; è; e◌̀; ) LATIN SMALL LETTER E WITH GRAVE
+        [$0065,$0301],              	// (é; é; e◌́; é; e◌́; ) LATIN SMALL LETTER E WITH ACUTE
+        [$0065,$0302],              	// (ê; ê; e◌̂; ê; e◌̂; ) LATIN SMALL LETTER E WITH CIRCUMFLEX
+        [$0065,$0308],              	// (ë; ë; e◌̈; ë; e◌̈; ) LATIN SMALL LETTER E WITH DIAERESIS
+        [$0069,$0300],              	// (ì; ì; i◌̀; ì; i◌̀; ) LATIN SMALL LETTER I WITH GRAVE
+        [$0069,$0301],              	// (í; í; i◌́; í; i◌́; ) LATIN SMALL LETTER I WITH ACUTE
+        [$0069,$0302],              	// (î; î; i◌̂; î; i◌̂; ) LATIN SMALL LETTER I WITH CIRCUMFLEX
+        [$0069,$0308],              	// (ï; ï; i◌̈; ï; i◌̈; ) LATIN SMALL LETTER I WITH DIAERESIS
+        [$006E,$0303],              	// (ñ; ñ; n◌̃; ñ; n◌̃; ) LATIN SMALL LETTER N WITH TILDE
+        [$006F,$0300],              	// (ò; ò; o◌̀; ò; o◌̀; ) LATIN SMALL LETTER O WITH GRAVE
+        [$006F,$0301],              	// (ó; ó; o◌́; ó; o◌́; ) LATIN SMALL LETTER O WITH ACUTE
+        [$006F,$0302],              	// (ô; ô; o◌̂; ô; o◌̂; ) LATIN SMALL LETTER O WITH CIRCUMFLEX
+        [$006F,$0303],              	// (õ; õ; o◌̃; õ; o◌̃; ) LATIN SMALL LETTER O WITH TILDE
+        [$006F,$0308],              	// (ö; ö; o◌̈; ö; o◌̈; ) LATIN SMALL LETTER O WITH DIAERESIS
+        [$0075,$0300],              	// (ù; ù; u◌̀; ù; u◌̀; ) LATIN SMALL LETTER U WITH GRAVE
+        [$0075,$0301],              	// (ú; ú; u◌́; ú; u◌́; ) LATIN SMALL LETTER U WITH ACUTE
+        [$0075,$0302],              	// (û; û; u◌̂; û; u◌̂; ) LATIN SMALL LETTER U WITH CIRCUMFLEX
+        [$0075,$0308],              	// (ü; ü; u◌̈; ü; u◌̈; ) LATIN SMALL LETTER U WITH DIAERESIS
+        [$0079,$0301],              	// (ý; ý; y◌́; ý; y◌́; ) LATIN SMALL LETTER Y WITH ACUTE
+        [$0079,$0308],              	// (ÿ; ÿ; y◌̈; ÿ; y◌̈; ) LATIN SMALL LETTER Y WITH DIAERESIS
+        [$0300],                    	// (◌̀; ◌̀; ◌̀; ◌̀; ◌̀; ) COMBINING GRAVE TONE MARK
+        [$0301],                    	// (◌́; ◌́; ◌́; ◌́; ◌́; ) COMBINING ACUTE TONE MARK
+        [$0313],                    	// (◌̓; ◌̓; ◌̓; ◌̓; ◌̓; ) COMBINING GREEK KORONIS
+        [$0308,$0301],              	// (◌̈́; ◌̈◌́; ◌̈◌́; ◌̈◌́; ◌̈◌́; ) COMBINING GREEK DIALYTIKA TONOS
+        [$02B9],                    	// (ʹ; ʹ; ʹ; ʹ; ʹ; ) GREEK NUMERAL SIGN
+        [$037A],                    	// (ͺ; ͺ; ͺ;  ◌ͅ;  ◌ͅ; ) GREEK YPOGEGRAMMENI
+        [$003B],                    	// (;; ;; ;; ;; ;; ) GREEK QUESTION MARK
+        [$0384],                    	// (΄; ΄; ΄;  ◌́;  ◌́; ) GREEK TONOS
+        [$00A8,$0301],              	// (΅; ΅; ¨◌́;  ◌̈◌́;  ◌̈◌́; ) GREEK DIALYTIKA TONOS
+        [$0391,$0301],              	// (Ά; Ά; Α◌́; Ά; Α◌́; ) GREEK CAPITAL LETTER ALPHA WITH TONOS
+        [$00B7],                    	// (·; ·; ·; ·; ·; ) GREEK ANO TELEIA
+        [$0395,$0301],              	// (Έ; Έ; Ε◌́; Έ; Ε◌́; ) GREEK CAPITAL LETTER EPSILON WITH TONOS
+        [$0397,$0301],              	// (Ή; Ή; Η◌́; Ή; Η◌́; ) GREEK CAPITAL LETTER ETA WITH TONOS
+        [$0399,$0301],              	// (Ί; Ί; Ι◌́; Ί; Ι◌́; ) GREEK CAPITAL LETTER IOTA WITH TONOS
+        [$039F,$0301],              	// (Ό; Ό; Ο◌́; Ό; Ο◌́; ) GREEK CAPITAL LETTER OMICRON WITH TONOS
+        [$03A5,$0301],              	// (Ύ; Ύ; Υ◌́; Ύ; Υ◌́; ) GREEK CAPITAL LETTER UPSILON WITH TONOS
+        [$03A9,$0301],              	// (Ώ; Ώ; Ω◌́; Ώ; Ω◌́; ) GREEK CAPITAL LETTER OMEGA WITH TONOS
+        [$03B9,$0308,$0301],        	// (ΐ; ΐ; ι◌̈◌́; ΐ; ι◌̈◌́; ) GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS
+        [$0399,$0308],              	// (Ϊ; Ϊ; Ι◌̈; Ϊ; Ι◌̈; ) GREEK CAPITAL LETTER IOTA WITH DIALYTIKA
+        [$03A5,$0308],              	// (Ϋ; Ϋ; Υ◌̈; Ϋ; Υ◌̈; ) GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA
+        [$03B1,$0301],              	// (ά; ά; α◌́; ά; α◌́; ) GREEK SMALL LETTER ALPHA WITH TONOS
+        [$03B5,$0301],              	// (έ; έ; ε◌́; έ; ε◌́; ) GREEK SMALL LETTER EPSILON WITH TONOS
+        [$03B7,$0301],              	// (ή; ή; η◌́; ή; η◌́; ) GREEK SMALL LETTER ETA WITH TONOS
+        [$03B9,$0301],              	// (ί; ί; ι◌́; ί; ι◌́; ) GREEK SMALL LETTER IOTA WITH TONOS
+        [$03C5,$0308,$0301],        	// (ΰ; ΰ; υ◌̈◌́; ΰ; υ◌̈◌́; ) GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS
+        [$03B9,$0308],              	// (ϊ; ϊ; ι◌̈; ϊ; ι◌̈; ) GREEK SMALL LETTER IOTA WITH DIALYTIKA
+        [$03C5,$0308],              	// (ϋ; ϋ; υ◌̈; ϋ; υ◌̈; ) GREEK SMALL LETTER UPSILON WITH DIALYTIKA
+        [$03BF,$0301],              	// (ό; ό; ο◌́; ό; ο◌́; ) GREEK SMALL LETTER OMICRON WITH TONOS
+        [$03C5,$0301],              	// (ύ; ύ; υ◌́; ύ; υ◌́; ) GREEK SMALL LETTER UPSILON WITH TONOS
+        [$03C9,$0301],              	// (ώ; ώ; ω◌́; ώ; ω◌́; ) GREEK SMALL LETTER OMEGA WITH TONOS
+        [$03D2,$0301],              	// (ϓ; ϓ; ϒ◌́; Ύ; Υ◌́; ) GREEK UPSILON WITH ACUTE AND HOOK SYMBOL
+        [$03D2,$0308],              	// (ϔ; ϔ; ϒ◌̈; Ϋ; Υ◌̈; ) GREEK UPSILON WITH DIAERESIS AND HOOK SYMBOL
+        [$03B1,$0313],              	// (ἀ; ἀ; α◌̓; ἀ; α◌̓; ) GREEK SMALL LETTER ALPHA WITH PSILI
+        [$03B1,$0314],              	// (ἁ; ἁ; α◌̔; ἁ; α◌̔; ) GREEK SMALL LETTER ALPHA WITH DASIA
+        [$03B1,$0313,$0300],        	// (ἂ; ἂ; α◌̓◌̀; ἂ; α◌̓◌̀; ) GREEK SMALL LETTER ALPHA WITH PSILI AND VARIA
+        [$03B1,$0314,$0300],        	// (ἃ; ἃ; α◌̔◌̀; ἃ; α◌̔◌̀; ) GREEK SMALL LETTER ALPHA WITH DASIA AND VARIA
+        [$03B1,$0313,$0301],        	// (ἄ; ἄ; α◌̓◌́; ἄ; α◌̓◌́; ) GREEK SMALL LETTER ALPHA WITH PSILI AND OXIA
+        [$03B1,$0314,$0301],        	// (ἅ; ἅ; α◌̔◌́; ἅ; α◌̔◌́; ) GREEK SMALL LETTER ALPHA WITH DASIA AND OXIA
+        [$03B1,$0313,$0342],        	// (ἆ; ἆ; α◌̓◌͂; ἆ; α◌̓◌͂; ) GREEK SMALL LETTER ALPHA WITH PSILI AND PERISPOMENI
+        [$03B1,$0314,$0342],        	// (ἇ; ἇ; α◌̔◌͂; ἇ; α◌̔◌͂; ) GREEK SMALL LETTER ALPHA WITH DASIA AND PERISPOMENI
+        [$0391,$0313],              	// (Ἀ; Ἀ; Α◌̓; Ἀ; Α◌̓; ) GREEK CAPITAL LETTER ALPHA WITH PSILI
+        [$0391,$0314],              	// (Ἁ; Ἁ; Α◌̔; Ἁ; Α◌̔; ) GREEK CAPITAL LETTER ALPHA WITH DASIA
+        [$0391,$0313,$0300],        	// (Ἂ; Ἂ; Α◌̓◌̀; Ἂ; Α◌̓◌̀; ) GREEK CAPITAL LETTER ALPHA WITH PSILI AND VARIA
+        [$0391,$0314,$0300],        	// (Ἃ; Ἃ; Α◌̔◌̀; Ἃ; Α◌̔◌̀; ) GREEK CAPITAL LETTER ALPHA WITH DASIA AND VARIA
+        [$0391,$0313,$0301],        	// (Ἄ; Ἄ; Α◌̓◌́; Ἄ; Α◌̓◌́; ) GREEK CAPITAL LETTER ALPHA WITH PSILI AND OXIA
+        [$0391,$0314,$0301],        	// (Ἅ; Ἅ; Α◌̔◌́; Ἅ; Α◌̔◌́; ) GREEK CAPITAL LETTER ALPHA WITH DASIA AND OXIA
+        [$0391,$0313,$0342],        	// (Ἆ; Ἆ; Α◌̓◌͂; Ἆ; Α◌̓◌͂; ) GREEK CAPITAL LETTER ALPHA WITH PSILI AND PERISPOMENI
+        [$0391,$0314,$0342],        	// (Ἇ; Ἇ; Α◌̔◌͂; Ἇ; Α◌̔◌͂; ) GREEK CAPITAL LETTER ALPHA WITH DASIA AND PERISPOMENI
+        [$03B5,$0313],              	// (ἐ; ἐ; ε◌̓; ἐ; ε◌̓; ) GREEK SMALL LETTER EPSILON WITH PSILI
+        [$03B5,$0314],              	// (ἑ; ἑ; ε◌̔; ἑ; ε◌̔; ) GREEK SMALL LETTER EPSILON WITH DASIA
+        [$03B5,$0313,$0300],        	// (ἒ; ἒ; ε◌̓◌̀; ἒ; ε◌̓◌̀; ) GREEK SMALL LETTER EPSILON WITH PSILI AND VARIA
+        [$03B5,$0314,$0300],        	// (ἓ; ἓ; ε◌̔◌̀; ἓ; ε◌̔◌̀; ) GREEK SMALL LETTER EPSILON WITH DASIA AND VARIA
+        [$03B5,$0313,$0301],        	// (ἔ; ἔ; ε◌̓◌́; ἔ; ε◌̓◌́; ) GREEK SMALL LETTER EPSILON WITH PSILI AND OXIA
+        [$03B5,$0314,$0301],        	// (ἕ; ἕ; ε◌̔◌́; ἕ; ε◌̔◌́; ) GREEK SMALL LETTER EPSILON WITH DASIA AND OXIA
+        [$0395,$0313],              	// (Ἐ; Ἐ; Ε◌̓; Ἐ; Ε◌̓; ) GREEK CAPITAL LETTER EPSILON WITH PSILI
+        [$0395,$0314],              	// (Ἑ; Ἑ; Ε◌̔; Ἑ; Ε◌̔; ) GREEK CAPITAL LETTER EPSILON WITH DASIA
+        [$0395,$0313,$0300],        	// (Ἒ; Ἒ; Ε◌̓◌̀; Ἒ; Ε◌̓◌̀; ) GREEK CAPITAL LETTER EPSILON WITH PSILI AND VARIA
+        [$0395,$0314,$0300],        	// (Ἓ; Ἓ; Ε◌̔◌̀; Ἓ; Ε◌̔◌̀; ) GREEK CAPITAL LETTER EPSILON WITH DASIA AND VARIA
+        [$0395,$0313,$0301],        	// (Ἔ; Ἔ; Ε◌̓◌́; Ἔ; Ε◌̓◌́; ) GREEK CAPITAL LETTER EPSILON WITH PSILI AND OXIA
+        [$0395,$0314,$0301],        	// (Ἕ; Ἕ; Ε◌̔◌́; Ἕ; Ε◌̔◌́; ) GREEK CAPITAL LETTER EPSILON WITH DASIA AND OXIA
+        [$03B7,$0313],              	// (ἠ; ἠ; η◌̓; ἠ; η◌̓; ) GREEK SMALL LETTER ETA WITH PSILI
+        [$03B7,$0314],              	// (ἡ; ἡ; η◌̔; ἡ; η◌̔; ) GREEK SMALL LETTER ETA WITH DASIA
+        [$03B7,$0313,$0300],        	// (ἢ; ἢ; η◌̓◌̀; ἢ; η◌̓◌̀; ) GREEK SMALL LETTER ETA WITH PSILI AND VARIA
+        [$03B7,$0314,$0300],        	// (ἣ; ἣ; η◌̔◌̀; ἣ; η◌̔◌̀; ) GREEK SMALL LETTER ETA WITH DASIA AND VARIA
+        [$03B7,$0313,$0301],        	// (ἤ; ἤ; η◌̓◌́; ἤ; η◌̓◌́; ) GREEK SMALL LETTER ETA WITH PSILI AND OXIA
+        [$03B7,$0314,$0301],        	// (ἥ; ἥ; η◌̔◌́; ἥ; η◌̔◌́; ) GREEK SMALL LETTER ETA WITH DASIA AND OXIA
+        [$03B7,$0313,$0342],        	// (ἦ; ἦ; η◌̓◌͂; ἦ; η◌̓◌͂; ) GREEK SMALL LETTER ETA WITH PSILI AND PERISPOMENI
+        [$03B7,$0314,$0342],        	// (ἧ; ἧ; η◌̔◌͂; ἧ; η◌̔◌͂; ) GREEK SMALL LETTER ETA WITH DASIA AND PERISPOMENI
+        [$0397,$0313],              	// (Ἠ; Ἠ; Η◌̓; Ἠ; Η◌̓; ) GREEK CAPITAL LETTER ETA WITH PSILI
+        [$0397,$0314],              	// (Ἡ; Ἡ; Η◌̔; Ἡ; Η◌̔; ) GREEK CAPITAL LETTER ETA WITH DASIA
+        [$0397,$0313,$0300],        	// (Ἢ; Ἢ; Η◌̓◌̀; Ἢ; Η◌̓◌̀; ) GREEK CAPITAL LETTER ETA WITH PSILI AND VARIA
+        [$0397,$0314,$0300],        	// (Ἣ; Ἣ; Η◌̔◌̀; Ἣ; Η◌̔◌̀; ) GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA
+        [$0397,$0313,$0301],        	// (Ἤ; Ἤ; Η◌̓◌́; Ἤ; Η◌̓◌́; ) GREEK CAPITAL LETTER ETA WITH PSILI AND OXIA
+        [$0397,$0314,$0301],        	// (Ἥ; Ἥ; Η◌̔◌́; Ἥ; Η◌̔◌́; ) GREEK CAPITAL LETTER ETA WITH DASIA AND OXIA
+        [$0397,$0313,$0342],        	// (Ἦ; Ἦ; Η◌̓◌͂; Ἦ; Η◌̓◌͂; ) GREEK CAPITAL LETTER ETA WITH PSILI AND PERISPOMENI
+        [$0397,$0314,$0342],        	// (Ἧ; Ἧ; Η◌̔◌͂; Ἧ; Η◌̔◌͂; ) GREEK CAPITAL LETTER ETA WITH DASIA AND PERISPOMENI
+        [$03B9,$0313],              	// (ἰ; ἰ; ι◌̓; ἰ; ι◌̓; ) GREEK SMALL LETTER IOTA WITH PSILI
+        [$03B9,$0314],              	// (ἱ; ἱ; ι◌̔; ἱ; ι◌̔; ) GREEK SMALL LETTER IOTA WITH DASIA
+        [$03B9,$0313,$0300],        	// (ἲ; ἲ; ι◌̓◌̀; ἲ; ι◌̓◌̀; ) GREEK SMALL LETTER IOTA WITH PSILI AND VARIA
+        [$03B9,$0314,$0300],        	// (ἳ; ἳ; ι◌̔◌̀; ἳ; ι◌̔◌̀; ) GREEK SMALL LETTER IOTA WITH DASIA AND VARIA
+        [$03B9,$0313,$0301],        	// (ἴ; ἴ; ι◌̓◌́; ἴ; ι◌̓◌́; ) GREEK SMALL LETTER IOTA WITH PSILI AND OXIA
+        [$03B9,$0314,$0301],        	// (ἵ; ἵ; ι◌̔◌́; ἵ; ι◌̔◌́; ) GREEK SMALL LETTER IOTA WITH DASIA AND OXIA
+        [$03B9,$0313,$0342],        	// (ἶ; ἶ; ι◌̓◌͂; ἶ; ι◌̓◌͂; ) GREEK SMALL LETTER IOTA WITH PSILI AND PERISPOMENI
+        [$03B9,$0314,$0342],        	// (ἷ; ἷ; ι◌̔◌͂; ἷ; ι◌̔◌͂; ) GREEK SMALL LETTER IOTA WITH DASIA AND PERISPOMENI
+        [$0399,$0313],              	// (Ἰ; Ἰ; Ι◌̓; Ἰ; Ι◌̓; ) GREEK CAPITAL LETTER IOTA WITH PSILI
+        [$0399,$0314],              	// (Ἱ; Ἱ; Ι◌̔; Ἱ; Ι◌̔; ) GREEK CAPITAL LETTER IOTA WITH DASIA
+        [$0399,$0313,$0300],        	// (Ἲ; Ἲ; Ι◌̓◌̀; Ἲ; Ι◌̓◌̀; ) GREEK CAPITAL LETTER IOTA WITH PSILI AND VARIA
+        [$0399,$0314,$0300],        	// (Ἳ; Ἳ; Ι◌̔◌̀; Ἳ; Ι◌̔◌̀; ) GREEK CAPITAL LETTER IOTA WITH DASIA AND VARIA
+        [$0399,$0313,$0301],        	// (Ἴ; Ἴ; Ι◌̓◌́; Ἴ; Ι◌̓◌́; ) GREEK CAPITAL LETTER IOTA WITH PSILI AND OXIA
+        [$0399,$0314,$0301],        	// (Ἵ; Ἵ; Ι◌̔◌́; Ἵ; Ι◌̔◌́; ) GREEK CAPITAL LETTER IOTA WITH DASIA AND OXIA
+        [$0399,$0313,$0342],        	// (Ἶ; Ἶ; Ι◌̓◌͂; Ἶ; Ι◌̓◌͂; ) GREEK CAPITAL LETTER IOTA WITH PSILI AND PERISPOMENI
+        [$0399,$0314,$0342],        	// (Ἷ; Ἷ; Ι◌̔◌͂; Ἷ; Ι◌̔◌͂; ) GREEK CAPITAL LETTER IOTA WITH DASIA AND PERISPOMENI
+        [$03BF,$0313],              	// (ὀ; ὀ; ο◌̓; ὀ; ο◌̓; ) GREEK SMALL LETTER OMICRON WITH PSILI
+        [$03BF,$0314],              	// (ὁ; ὁ; ο◌̔; ὁ; ο◌̔; ) GREEK SMALL LETTER OMICRON WITH DASIA
+        [$03BF,$0313,$0300],        	// (ὂ; ὂ; ο◌̓◌̀; ὂ; ο◌̓◌̀; ) GREEK SMALL LETTER OMICRON WITH PSILI AND VARIA
+        [$03BF,$0314,$0300],        	// (ὃ; ὃ; ο◌̔◌̀; ὃ; ο◌̔◌̀; ) GREEK SMALL LETTER OMICRON WITH DASIA AND VARIA
+        [$03BF,$0313,$0301],        	// (ὄ; ὄ; ο◌̓◌́; ὄ; ο◌̓◌́; ) GREEK SMALL LETTER OMICRON WITH PSILI AND OXIA
+        [$03BF,$0314,$0301],        	// (ὅ; ὅ; ο◌̔◌́; ὅ; ο◌̔◌́; ) GREEK SMALL LETTER OMICRON WITH DASIA AND OXIA
+        [$039F,$0313],              	// (Ὀ; Ὀ; Ο◌̓; Ὀ; Ο◌̓; ) GREEK CAPITAL LETTER OMICRON WITH PSILI
+        [$039F,$0314],              	// (Ὁ; Ὁ; Ο◌̔; Ὁ; Ο◌̔; ) GREEK CAPITAL LETTER OMICRON WITH DASIA
+        [$039F,$0313,$0300],        	// (Ὂ; Ὂ; Ο◌̓◌̀; Ὂ; Ο◌̓◌̀; ) GREEK CAPITAL LETTER OMICRON WITH PSILI AND VARIA
+        [$039F,$0314,$0300],        	// (Ὃ; Ὃ; Ο◌̔◌̀; Ὃ; Ο◌̔◌̀; ) GREEK CAPITAL LETTER OMICRON WITH DASIA AND VARIA
+        [$039F,$0313,$0301],        	// (Ὄ; Ὄ; Ο◌̓◌́; Ὄ; Ο◌̓◌́; ) GREEK CAPITAL LETTER OMICRON WITH PSILI AND OXIA
+        [$039F,$0314,$0301],        	// (Ὅ; Ὅ; Ο◌̔◌́; Ὅ; Ο◌̔◌́; ) GREEK CAPITAL LETTER OMICRON WITH DASIA AND OXIA
+        [$03C5,$0313],              	// (ὐ; ὐ; υ◌̓; ὐ; υ◌̓; ) GREEK SMALL LETTER UPSILON WITH PSILI
+        [$03C5,$0314],              	// (ὑ; ὑ; υ◌̔; ὑ; υ◌̔; ) GREEK SMALL LETTER UPSILON WITH DASIA
+        [$03C5,$0313,$0300],        	// (ὒ; ὒ; υ◌̓◌̀; ὒ; υ◌̓◌̀; ) GREEK SMALL LETTER UPSILON WITH PSILI AND VARIA
+        [$03C5,$0314,$0300],        	// (ὓ; ὓ; υ◌̔◌̀; ὓ; υ◌̔◌̀; ) GREEK SMALL LETTER UPSILON WITH DASIA AND VARIA
+        [$03C5,$0313,$0301],        	// (ὔ; ὔ; υ◌̓◌́; ὔ; υ◌̓◌́; ) GREEK SMALL LETTER UPSILON WITH PSILI AND OXIA
+        [$03C5,$0314,$0301],        	// (ὕ; ὕ; υ◌̔◌́; ὕ; υ◌̔◌́; ) GREEK SMALL LETTER UPSILON WITH DASIA AND OXIA
+        [$03C5,$0313,$0342],        	// (ὖ; ὖ; υ◌̓◌͂; ὖ; υ◌̓◌͂; ) GREEK SMALL LETTER UPSILON WITH PSILI AND PERISPOMENI
+        [$03C5,$0314,$0342],        	// (ὗ; ὗ; υ◌̔◌͂; ὗ; υ◌̔◌͂; ) GREEK SMALL LETTER UPSILON WITH DASIA AND PERISPOMENI
+        [$03A5,$0314],              	// (Ὑ; Ὑ; Υ◌̔; Ὑ; Υ◌̔; ) GREEK CAPITAL LETTER UPSILON WITH DASIA
+        [$03A5,$0314,$0300],        	// (Ὓ; Ὓ; Υ◌̔◌̀; Ὓ; Υ◌̔◌̀; ) GREEK CAPITAL LETTER UPSILON WITH DASIA AND VARIA
+        [$03A5,$0314,$0301],        	// (Ὕ; Ὕ; Υ◌̔◌́; Ὕ; Υ◌̔◌́; ) GREEK CAPITAL LETTER UPSILON WITH DASIA AND OXIA
+        [$03A5,$0314,$0342],        	// (Ὗ; Ὗ; Υ◌̔◌͂; Ὗ; Υ◌̔◌͂; ) GREEK CAPITAL LETTER UPSILON WITH DASIA AND PERISPOMENI
+        [$03C9,$0313],              	// (ὠ; ὠ; ω◌̓; ὠ; ω◌̓; ) GREEK SMALL LETTER OMEGA WITH PSILI
+        [$03C9,$0314],              	// (ὡ; ὡ; ω◌̔; ὡ; ω◌̔; ) GREEK SMALL LETTER OMEGA WITH DASIA
+        [$03C9,$0313,$0300],        	// (ὢ; ὢ; ω◌̓◌̀; ὢ; ω◌̓◌̀; ) GREEK SMALL LETTER OMEGA WITH PSILI AND VARIA
+        [$03C9,$0314,$0300],        	// (ὣ; ὣ; ω◌̔◌̀; ὣ; ω◌̔◌̀; ) GREEK SMALL LETTER OMEGA WITH DASIA AND VARIA
+        [$03C9,$0313,$0301],        	// (ὤ; ὤ; ω◌̓◌́; ὤ; ω◌̓◌́; ) GREEK SMALL LETTER OMEGA WITH PSILI AND OXIA
+        [$03C9,$0314,$0301],        	// (ὥ; ὥ; ω◌̔◌́; ὥ; ω◌̔◌́; ) GREEK SMALL LETTER OMEGA WITH DASIA AND OXIA
+        [$03C9,$0313,$0342],        	// (ὦ; ὦ; ω◌̓◌͂; ὦ; ω◌̓◌͂; ) GREEK SMALL LETTER OMEGA WITH PSILI AND PERISPOMENI
+        [$03C9,$0314,$0342],        	// (ὧ; ὧ; ω◌̔◌͂; ὧ; ω◌̔◌͂; ) GREEK SMALL LETTER OMEGA WITH DASIA AND PERISPOMENI
+        [$03A9,$0313],              	// (Ὠ; Ὠ; Ω◌̓; Ὠ; Ω◌̓; ) GREEK CAPITAL LETTER OMEGA WITH PSILI
+        [$03A9,$0314],              	// (Ὡ; Ὡ; Ω◌̔; Ὡ; Ω◌̔; ) GREEK CAPITAL LETTER OMEGA WITH DASIA
+        [$03A9,$0313,$0300],        	// (Ὢ; Ὢ; Ω◌̓◌̀; Ὢ; Ω◌̓◌̀; ) GREEK CAPITAL LETTER OMEGA WITH PSILI AND VARIA
+        [$03A9,$0314,$0300],        	// (Ὣ; Ὣ; Ω◌̔◌̀; Ὣ; Ω◌̔◌̀; ) GREEK CAPITAL LETTER OMEGA WITH DASIA AND VARIA
+        [$03A9,$0313,$0301],        	// (Ὤ; Ὤ; Ω◌̓◌́; Ὤ; Ω◌̓◌́; ) GREEK CAPITAL LETTER OMEGA WITH PSILI AND OXIA
+        [$03A9,$0314,$0301],        	// (Ὥ; Ὥ; Ω◌̔◌́; Ὥ; Ω◌̔◌́; ) GREEK CAPITAL LETTER OMEGA WITH DASIA AND OXIA
+        [$03A9,$0313,$0342],        	// (Ὦ; Ὦ; Ω◌̓◌͂; Ὦ; Ω◌̓◌͂; ) GREEK CAPITAL LETTER OMEGA WITH PSILI AND PERISPOMENI
+        [$03A9,$0314,$0342],        	// (Ὧ; Ὧ; Ω◌̔◌͂; Ὧ; Ω◌̔◌͂; ) GREEK CAPITAL LETTER OMEGA WITH DASIA AND PERISPOMENI
+        [$03B1,$0300],              	// (ὰ; ὰ; α◌̀; ὰ; α◌̀; ) GREEK SMALL LETTER ALPHA WITH VARIA
+        [$03B1,$0301],              	// (ά; ά; α◌́; ά; α◌́; ) GREEK SMALL LETTER ALPHA WITH OXIA
+        [$03B5,$0300],              	// (ὲ; ὲ; ε◌̀; ὲ; ε◌̀; ) GREEK SMALL LETTER EPSILON WITH VARIA
+        [$03B5,$0301],              	// (έ; έ; ε◌́; έ; ε◌́; ) GREEK SMALL LETTER EPSILON WITH OXIA
+        [$03B7,$0300],              	// (ὴ; ὴ; η◌̀; ὴ; η◌̀; ) GREEK SMALL LETTER ETA WITH VARIA
+        [$03B7,$0301],              	// (ή; ή; η◌́; ή; η◌́; ) GREEK SMALL LETTER ETA WITH OXIA
+        [$03B9,$0300],              	// (ὶ; ὶ; ι◌̀; ὶ; ι◌̀; ) GREEK SMALL LETTER IOTA WITH VARIA
+        [$03B9,$0301],              	// (ί; ί; ι◌́; ί; ι◌́; ) GREEK SMALL LETTER IOTA WITH OXIA
+        [$03BF,$0300],              	// (ὸ; ὸ; ο◌̀; ὸ; ο◌̀; ) GREEK SMALL LETTER OMICRON WITH VARIA
+        [$03BF,$0301],              	// (ό; ό; ο◌́; ό; ο◌́; ) GREEK SMALL LETTER OMICRON WITH OXIA
+        [$03C5,$0300],              	// (ὺ; ὺ; υ◌̀; ὺ; υ◌̀; ) GREEK SMALL LETTER UPSILON WITH VARIA
+        [$03C5,$0301],              	// (ύ; ύ; υ◌́; ύ; υ◌́; ) GREEK SMALL LETTER UPSILON WITH OXIA
+        [$03C9,$0300],              	// (ὼ; ὼ; ω◌̀; ὼ; ω◌̀; ) GREEK SMALL LETTER OMEGA WITH VARIA
+        [$03C9,$0301],              	// (ώ; ώ; ω◌́; ώ; ω◌́; ) GREEK SMALL LETTER OMEGA WITH OXIA
+        [$03B1,$0313,$0345],        	// (ᾀ; ᾀ; α◌̓◌ͅ; ᾀ; α◌̓◌ͅ; ) GREEK SMALL LETTER ALPHA WITH PSILI AND YPOGEGRAMMENI
+        [$03B1,$0314,$0345],        	// (ᾁ; ᾁ; α◌̔◌ͅ; ᾁ; α◌̔◌ͅ; ) GREEK SMALL LETTER ALPHA WITH DASIA AND YPOGEGRAMMENI
+        [$03B1,$0313,$0300,$0345],  	// (ᾂ; ᾂ; α◌̓◌̀◌ͅ; ᾂ; α◌̓◌̀◌ͅ; ) GREEK SMALL LETTER ALPHA WITH PSILI AND VARIA AND YPOGEGRAMMENI
+        [$03B1,$0314,$0300,$0345],  	// (ᾃ; ᾃ; α◌̔◌̀◌ͅ; ᾃ; α◌̔◌̀◌ͅ; ) GREEK SMALL LETTER ALPHA WITH DASIA AND VARIA AND YPOGEGRAMMENI
+        [$03B1,$0313,$0301,$0345],  	// (ᾄ; ᾄ; α◌̓◌́◌ͅ; ᾄ; α◌̓◌́◌ͅ; ) GREEK SMALL LETTER ALPHA WITH PSILI AND OXIA AND YPOGEGRAMMENI
+        [$03B1,$0314,$0301,$0345],  	// (ᾅ; ᾅ; α◌̔◌́◌ͅ; ᾅ; α◌̔◌́◌ͅ; ) GREEK SMALL LETTER ALPHA WITH DASIA AND OXIA AND YPOGEGRAMMENI
+        [$03B1,$0313,$0342,$0345],  	// (ᾆ; ᾆ; α◌̓◌͂◌ͅ; ᾆ; α◌̓◌͂◌ͅ; ) GREEK SMALL LETTER ALPHA WITH PSILI AND PERISPOMENI AND YPOGEGRAMMENI
+        [$03B1,$0314,$0342,$0345],  	// (ᾇ; ᾇ; α◌̔◌͂◌ͅ; ᾇ; α◌̔◌͂◌ͅ; ) GREEK SMALL LETTER ALPHA WITH DASIA AND PERISPOMENI AND YPOGEGRAMMENI
+        [$0391,$0313,$0345],        	// (ᾈ; ᾈ; Α◌̓◌ͅ; ᾈ; Α◌̓◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH PSILI AND PROSGEGRAMMENI
+        [$0391,$0314,$0345],        	// (ᾉ; ᾉ; Α◌̔◌ͅ; ᾉ; Α◌̔◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH DASIA AND PROSGEGRAMMENI
+        [$0391,$0313,$0300,$0345],  	// (ᾊ; ᾊ; Α◌̓◌̀◌ͅ; ᾊ; Α◌̓◌̀◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH PSILI AND VARIA AND PROSGEGRAMMENI
+        [$0391,$0314,$0300,$0345],  	// (ᾋ; ᾋ; Α◌̔◌̀◌ͅ; ᾋ; Α◌̔◌̀◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH DASIA AND VARIA AND PROSGEGRAMMENI
+        [$0391,$0313,$0301,$0345],  	// (ᾌ; ᾌ; Α◌̓◌́◌ͅ; ᾌ; Α◌̓◌́◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH PSILI AND OXIA AND PROSGEGRAMMENI
+        [$0391,$0314,$0301,$0345],  	// (ᾍ; ᾍ; Α◌̔◌́◌ͅ; ᾍ; Α◌̔◌́◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH DASIA AND OXIA AND PROSGEGRAMMENI
+        [$0391,$0313,$0342,$0345],  	// (ᾎ; ᾎ; Α◌̓◌͂◌ͅ; ᾎ; Α◌̓◌͂◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH PSILI AND PERISPOMENI AND PROSGEGRAMMENI
+        [$0391,$0314,$0342,$0345],  	// (ᾏ; ᾏ; Α◌̔◌͂◌ͅ; ᾏ; Α◌̔◌͂◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH DASIA AND PERISPOMENI AND PROSGEGRAMMENI
+        [$03B7,$0313,$0345],        	// (ᾐ; ᾐ; η◌̓◌ͅ; ᾐ; η◌̓◌ͅ; ) GREEK SMALL LETTER ETA WITH PSILI AND YPOGEGRAMMENI
+        [$03B7,$0314,$0345],        	// (ᾑ; ᾑ; η◌̔◌ͅ; ᾑ; η◌̔◌ͅ; ) GREEK SMALL LETTER ETA WITH DASIA AND YPOGEGRAMMENI
+        [$03B7,$0313,$0300,$0345],  	// (ᾒ; ᾒ; η◌̓◌̀◌ͅ; ᾒ; η◌̓◌̀◌ͅ; ) GREEK SMALL LETTER ETA WITH PSILI AND VARIA AND YPOGEGRAMMENI
+        [$03B7,$0314,$0300,$0345],  	// (ᾓ; ᾓ; η◌̔◌̀◌ͅ; ᾓ; η◌̔◌̀◌ͅ; ) GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND YPOGEGRAMMENI
+        [$03B7,$0313,$0301,$0345],  	// (ᾔ; ᾔ; η◌̓◌́◌ͅ; ᾔ; η◌̓◌́◌ͅ; ) GREEK SMALL LETTER ETA WITH PSILI AND OXIA AND YPOGEGRAMMENI
+        [$03B7,$0314,$0301,$0345],  	// (ᾕ; ᾕ; η◌̔◌́◌ͅ; ᾕ; η◌̔◌́◌ͅ; ) GREEK SMALL LETTER ETA WITH DASIA AND OXIA AND YPOGEGRAMMENI
+        [$03B7,$0313,$0342,$0345],  	// (ᾖ; ᾖ; η◌̓◌͂◌ͅ; ᾖ; η◌̓◌͂◌ͅ; ) GREEK SMALL LETTER ETA WITH PSILI AND PERISPOMENI AND YPOGEGRAMMENI
+        [$03B7,$0314,$0342,$0345],  	// (ᾗ; ᾗ; η◌̔◌͂◌ͅ; ᾗ; η◌̔◌͂◌ͅ; ) GREEK SMALL LETTER ETA WITH DASIA AND PERISPOMENI AND YPOGEGRAMMENI
+        [$0397,$0313,$0345],        	// (ᾘ; ᾘ; Η◌̓◌ͅ; ᾘ; Η◌̓◌ͅ; ) GREEK CAPITAL LETTER ETA WITH PSILI AND PROSGEGRAMMENI
+        [$0397,$0314,$0345],        	// (ᾙ; ᾙ; Η◌̔◌ͅ; ᾙ; Η◌̔◌ͅ; ) GREEK CAPITAL LETTER ETA WITH DASIA AND PROSGEGRAMMENI
+        [$0397,$0313,$0300,$0345],  	// (ᾚ; ᾚ; Η◌̓◌̀◌ͅ; ᾚ; Η◌̓◌̀◌ͅ; ) GREEK CAPITAL LETTER ETA WITH PSILI AND VARIA AND PROSGEGRAMMENI
+        [$0397,$0314,$0300,$0345],  	// (ᾛ; ᾛ; Η◌̔◌̀◌ͅ; ᾛ; Η◌̔◌̀◌ͅ; ) GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI
+        [$0397,$0313,$0301,$0345],  	// (ᾜ; ᾜ; Η◌̓◌́◌ͅ; ᾜ; Η◌̓◌́◌ͅ; ) GREEK CAPITAL LETTER ETA WITH PSILI AND OXIA AND PROSGEGRAMMENI
+        [$0397,$0314,$0301,$0345],  	// (ᾝ; ᾝ; Η◌̔◌́◌ͅ; ᾝ; Η◌̔◌́◌ͅ; ) GREEK CAPITAL LETTER ETA WITH DASIA AND OXIA AND PROSGEGRAMMENI
+        [$0397,$0313,$0342,$0345],  	// (ᾞ; ᾞ; Η◌̓◌͂◌ͅ; ᾞ; Η◌̓◌͂◌ͅ; ) GREEK CAPITAL LETTER ETA WITH PSILI AND PERISPOMENI AND PROSGEGRAMMENI
+        [$0397,$0314,$0342,$0345],  	// (ᾟ; ᾟ; Η◌̔◌͂◌ͅ; ᾟ; Η◌̔◌͂◌ͅ; ) GREEK CAPITAL LETTER ETA WITH DASIA AND PERISPOMENI AND PROSGEGRAMMENI
+        [$03C9,$0313,$0345],        	// (ᾠ; ᾠ; ω◌̓◌ͅ; ᾠ; ω◌̓◌ͅ; ) GREEK SMALL LETTER OMEGA WITH PSILI AND YPOGEGRAMMENI
+        [$03C9,$0314,$0345],        	// (ᾡ; ᾡ; ω◌̔◌ͅ; ᾡ; ω◌̔◌ͅ; ) GREEK SMALL LETTER OMEGA WITH DASIA AND YPOGEGRAMMENI
+        [$03C9,$0313,$0300,$0345],  	// (ᾢ; ᾢ; ω◌̓◌̀◌ͅ; ᾢ; ω◌̓◌̀◌ͅ; ) GREEK SMALL LETTER OMEGA WITH PSILI AND VARIA AND YPOGEGRAMMENI
+        [$03C9,$0314,$0300,$0345],  	// (ᾣ; ᾣ; ω◌̔◌̀◌ͅ; ᾣ; ω◌̔◌̀◌ͅ; ) GREEK SMALL LETTER OMEGA WITH DASIA AND VARIA AND YPOGEGRAMMENI
+        [$03C9,$0313,$0301,$0345],  	// (ᾤ; ᾤ; ω◌̓◌́◌ͅ; ᾤ; ω◌̓◌́◌ͅ; ) GREEK SMALL LETTER OMEGA WITH PSILI AND OXIA AND YPOGEGRAMMENI
+        [$03C9,$0314,$0301,$0345],  	// (ᾥ; ᾥ; ω◌̔◌́◌ͅ; ᾥ; ω◌̔◌́◌ͅ; ) GREEK SMALL LETTER OMEGA WITH DASIA AND OXIA AND YPOGEGRAMMENI
+        [$03C9,$0313,$0342,$0345],  	// (ᾦ; ᾦ; ω◌̓◌͂◌ͅ; ᾦ; ω◌̓◌͂◌ͅ; ) GREEK SMALL LETTER OMEGA WITH PSILI AND PERISPOMENI AND YPOGEGRAMMENI
+        [$03C9,$0314,$0342,$0345],  	// (ᾧ; ᾧ; ω◌̔◌͂◌ͅ; ᾧ; ω◌̔◌͂◌ͅ; ) GREEK SMALL LETTER OMEGA WITH DASIA AND PERISPOMENI AND YPOGEGRAMMENI
+        [$03A9,$0313,$0345],        	// (ᾨ; ᾨ; Ω◌̓◌ͅ; ᾨ; Ω◌̓◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH PSILI AND PROSGEGRAMMENI
+        [$03A9,$0314,$0345],        	// (ᾩ; ᾩ; Ω◌̔◌ͅ; ᾩ; Ω◌̔◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH DASIA AND PROSGEGRAMMENI
+        [$03A9,$0313,$0300,$0345],  	// (ᾪ; ᾪ; Ω◌̓◌̀◌ͅ; ᾪ; Ω◌̓◌̀◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH PSILI AND VARIA AND PROSGEGRAMMENI
+        [$03A9,$0314,$0300,$0345],  	// (ᾫ; ᾫ; Ω◌̔◌̀◌ͅ; ᾫ; Ω◌̔◌̀◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH DASIA AND VARIA AND PROSGEGRAMMENI
+        [$03A9,$0313,$0301,$0345],  	// (ᾬ; ᾬ; Ω◌̓◌́◌ͅ; ᾬ; Ω◌̓◌́◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH PSILI AND OXIA AND PROSGEGRAMMENI
+        [$03A9,$0314,$0301,$0345],  	// (ᾭ; ᾭ; Ω◌̔◌́◌ͅ; ᾭ; Ω◌̔◌́◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH DASIA AND OXIA AND PROSGEGRAMMENI
+        [$03A9,$0313,$0342,$0345],  	// (ᾮ; ᾮ; Ω◌̓◌͂◌ͅ; ᾮ; Ω◌̓◌͂◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH PSILI AND PERISPOMENI AND PROSGEGRAMMENI
+        [$03A9,$0314,$0342,$0345],  	// (ᾯ; ᾯ; Ω◌̔◌͂◌ͅ; ᾯ; Ω◌̔◌͂◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH DASIA AND PERISPOMENI AND PROSGEGRAMMENI
+        [$03B1,$0306],              	// (ᾰ; ᾰ; α◌̆; ᾰ; α◌̆; ) GREEK SMALL LETTER ALPHA WITH VRACHY
+        [$03B1,$0304],              	// (ᾱ; ᾱ; α◌̄; ᾱ; α◌̄; ) GREEK SMALL LETTER ALPHA WITH MACRON
+        [$03B1,$0300,$0345],        	// (ᾲ; ᾲ; α◌̀◌ͅ; ᾲ; α◌̀◌ͅ; ) GREEK SMALL LETTER ALPHA WITH VARIA AND YPOGEGRAMMENI
+        [$03B1,$0345],              	// (ᾳ; ᾳ; α◌ͅ; ᾳ; α◌ͅ; ) GREEK SMALL LETTER ALPHA WITH YPOGEGRAMMENI
+        [$03B1,$0301,$0345],        	// (ᾴ; ᾴ; α◌́◌ͅ; ᾴ; α◌́◌ͅ; ) GREEK SMALL LETTER ALPHA WITH OXIA AND YPOGEGRAMMENI
+        [$03B1,$0342],              	// (ᾶ; ᾶ; α◌͂; ᾶ; α◌͂; ) GREEK SMALL LETTER ALPHA WITH PERISPOMENI
+        [$03B1,$0342,$0345],        	// (ᾷ; ᾷ; α◌͂◌ͅ; ᾷ; α◌͂◌ͅ; ) GREEK SMALL LETTER ALPHA WITH PERISPOMENI AND YPOGEGRAMMENI
+        [$0391,$0306],              	// (Ᾰ; Ᾰ; Α◌̆; Ᾰ; Α◌̆; ) GREEK CAPITAL LETTER ALPHA WITH VRACHY
+        [$0391,$0304],              	// (Ᾱ; Ᾱ; Α◌̄; Ᾱ; Α◌̄; ) GREEK CAPITAL LETTER ALPHA WITH MACRON
+        [$0391,$0300],              	// (Ὰ; Ὰ; Α◌̀; Ὰ; Α◌̀; ) GREEK CAPITAL LETTER ALPHA WITH VARIA
+        [$0391,$0301],              	// (Ά; Ά; Α◌́; Ά; Α◌́; ) GREEK CAPITAL LETTER ALPHA WITH OXIA
+        [$0391,$0345],              	// (ᾼ; ᾼ; Α◌ͅ; ᾼ; Α◌ͅ; ) GREEK CAPITAL LETTER ALPHA WITH PROSGEGRAMMENI
+        [$03B9],                    	// (ι; ι; ι; ι; ι; ) GREEK PROSGEGRAMMENI
+        [$00A8,$0342],              	// (῁; ῁; ¨◌͂;  ◌̈◌͂;  ◌̈◌͂; ) GREEK DIALYTIKA AND PERISPOMENI
+        [$03B7,$0300,$0345],        	// (ῂ; ῂ; η◌̀◌ͅ; ῂ; η◌̀◌ͅ; ) GREEK SMALL LETTER ETA WITH VARIA AND YPOGEGRAMMENI
+        [$03B7,$0345],              	// (ῃ; ῃ; η◌ͅ; ῃ; η◌ͅ; ) GREEK SMALL LETTER ETA WITH YPOGEGRAMMENI
+        [$03B7,$0301,$0345],        	// (ῄ; ῄ; η◌́◌ͅ; ῄ; η◌́◌ͅ; ) GREEK SMALL LETTER ETA WITH OXIA AND YPOGEGRAMMENI
+        [$03B7,$0342],              	// (ῆ; ῆ; η◌͂; ῆ; η◌͂; ) GREEK SMALL LETTER ETA WITH PERISPOMENI
+        [$03B7,$0342,$0345],        	// (ῇ; ῇ; η◌͂◌ͅ; ῇ; η◌͂◌ͅ; ) GREEK SMALL LETTER ETA WITH PERISPOMENI AND YPOGEGRAMMENI
+        [$0395,$0300],              	// (Ὲ; Ὲ; Ε◌̀; Ὲ; Ε◌̀; ) GREEK CAPITAL LETTER EPSILON WITH VARIA
+        [$0395,$0301],              	// (Έ; Έ; Ε◌́; Έ; Ε◌́; ) GREEK CAPITAL LETTER EPSILON WITH OXIA
+        [$0397,$0300],              	// (Ὴ; Ὴ; Η◌̀; Ὴ; Η◌̀; ) GREEK CAPITAL LETTER ETA WITH VARIA
+        [$0397,$0301],              	// (Ή; Ή; Η◌́; Ή; Η◌́; ) GREEK CAPITAL LETTER ETA WITH OXIA
+        [$0397,$0345],              	// (ῌ; ῌ; Η◌ͅ; ῌ; Η◌ͅ; ) GREEK CAPITAL LETTER ETA WITH PROSGEGRAMMENI
+        [$1FBF,$0300],              	// (῍; ῍; ᾿◌̀;  ◌̓◌̀;  ◌̓◌̀; ) GREEK PSILI AND VARIA
+        [$1FBF,$0301],              	// (῎; ῎; ᾿◌́;  ◌̓◌́;  ◌̓◌́; ) GREEK PSILI AND OXIA
+        [$1FBF,$0342],              	// (῏; ῏; ᾿◌͂;  ◌̓◌͂;  ◌̓◌͂; ) GREEK PSILI AND PERISPOMENI
+        [$03B9,$0306],              	// (ῐ; ῐ; ι◌̆; ῐ; ι◌̆; ) GREEK SMALL LETTER IOTA WITH VRACHY
+        [$03B9,$0304],              	// (ῑ; ῑ; ι◌̄; ῑ; ι◌̄; ) GREEK SMALL LETTER IOTA WITH MACRON
+        [$03B9,$0308,$0300],        	// (ῒ; ῒ; ι◌̈◌̀; ῒ; ι◌̈◌̀; ) GREEK SMALL LETTER IOTA WITH DIALYTIKA AND VARIA
+        [$03B9,$0308,$0301],        	// (ΐ; ΐ; ι◌̈◌́; ΐ; ι◌̈◌́; ) GREEK SMALL LETTER IOTA WITH DIALYTIKA AND OXIA
+        [$03B9,$0342],              	// (ῖ; ῖ; ι◌͂; ῖ; ι◌͂; ) GREEK SMALL LETTER IOTA WITH PERISPOMENI
+        [$03B9,$0308,$0342],        	// (ῗ; ῗ; ι◌̈◌͂; ῗ; ι◌̈◌͂; ) GREEK SMALL LETTER IOTA WITH DIALYTIKA AND PERISPOMENI
+        [$0399,$0306],              	// (Ῐ; Ῐ; Ι◌̆; Ῐ; Ι◌̆; ) GREEK CAPITAL LETTER IOTA WITH VRACHY
+        [$0399,$0304],              	// (Ῑ; Ῑ; Ι◌̄; Ῑ; Ι◌̄; ) GREEK CAPITAL LETTER IOTA WITH MACRON
+        [$0399,$0300],              	// (Ὶ; Ὶ; Ι◌̀; Ὶ; Ι◌̀; ) GREEK CAPITAL LETTER IOTA WITH VARIA
+        [$0399,$0301],              	// (Ί; Ί; Ι◌́; Ί; Ι◌́; ) GREEK CAPITAL LETTER IOTA WITH OXIA
+        [$1FFE,$0300],              	// (῝; ῝; ῾◌̀;  ◌̔◌̀;  ◌̔◌̀; ) GREEK DASIA AND VARIA
+        [$1FFE,$0301],              	// (῞; ῞; ῾◌́;  ◌̔◌́;  ◌̔◌́; ) GREEK DASIA AND OXIA
+        [$1FFE,$0342],              	// (῟; ῟; ῾◌͂;  ◌̔◌͂;  ◌̔◌͂; ) GREEK DASIA AND PERISPOMENI
+        [$03C5,$0306],              	// (ῠ; ῠ; υ◌̆; ῠ; υ◌̆; ) GREEK SMALL LETTER UPSILON WITH VRACHY
+        [$03C5,$0304],              	// (ῡ; ῡ; υ◌̄; ῡ; υ◌̄; ) GREEK SMALL LETTER UPSILON WITH MACRON
+        [$03C5,$0308,$0300],        	// (ῢ; ῢ; υ◌̈◌̀; ῢ; υ◌̈◌̀; ) GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND VARIA
+        [$03C5,$0308,$0301],        	// (ΰ; ΰ; υ◌̈◌́; ΰ; υ◌̈◌́; ) GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND OXIA
+        [$03C1,$0313],              	// (ῤ; ῤ; ρ◌̓; ῤ; ρ◌̓; ) GREEK SMALL LETTER RHO WITH PSILI
+        [$03C1,$0314],              	// (ῥ; ῥ; ρ◌̔; ῥ; ρ◌̔; ) GREEK SMALL LETTER RHO WITH DASIA
+        [$03C5,$0342],              	// (ῦ; ῦ; υ◌͂; ῦ; υ◌͂; ) GREEK SMALL LETTER UPSILON WITH PERISPOMENI
+        [$03C5,$0308,$0342],        	// (ῧ; ῧ; υ◌̈◌͂; ῧ; υ◌̈◌͂; ) GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND PERISPOMENI
+        [$03A5,$0306],              	// (Ῠ; Ῠ; Υ◌̆; Ῠ; Υ◌̆; ) GREEK CAPITAL LETTER UPSILON WITH VRACHY
+        [$03A5,$0304],              	// (Ῡ; Ῡ; Υ◌̄; Ῡ; Υ◌̄; ) GREEK CAPITAL LETTER UPSILON WITH MACRON
+        [$03A5,$0300],              	// (Ὺ; Ὺ; Υ◌̀; Ὺ; Υ◌̀; ) GREEK CAPITAL LETTER UPSILON WITH VARIA
+        [$03A5,$0301],              	// (Ύ; Ύ; Υ◌́; Ύ; Υ◌́; ) GREEK CAPITAL LETTER UPSILON WITH OXIA
+        [$03A1,$0314],              	// (Ῥ; Ῥ; Ρ◌̔; Ῥ; Ρ◌̔; ) GREEK CAPITAL LETTER RHO WITH DASIA
+        [$00A8,$0300],              	// (῭; ῭; ¨◌̀;  ◌̈◌̀;  ◌̈◌̀; ) GREEK DIALYTIKA AND VARIA
+        [$00A8,$0301],              	// (΅; ΅; ¨◌́;  ◌̈◌́;  ◌̈◌́; ) GREEK DIALYTIKA AND OXIA
+        [$0060],                    	// (`; `; `; `; `; ) GREEK VARIA
+        [$03C9,$0300,$0345],        	// (ῲ; ῲ; ω◌̀◌ͅ; ῲ; ω◌̀◌ͅ; ) GREEK SMALL LETTER OMEGA WITH VARIA AND YPOGEGRAMMENI
+        [$03C9,$0345],              	// (ῳ; ῳ; ω◌ͅ; ῳ; ω◌ͅ; ) GREEK SMALL LETTER OMEGA WITH YPOGEGRAMMENI
+        [$03C9,$0301,$0345],        	// (ῴ; ῴ; ω◌́◌ͅ; ῴ; ω◌́◌ͅ; ) GREEK SMALL LETTER OMEGA WITH OXIA AND YPOGEGRAMMENI
+        [$03C9,$0342],              	// (ῶ; ῶ; ω◌͂; ῶ; ω◌͂; ) GREEK SMALL LETTER OMEGA WITH PERISPOMENI
+        [$03C9,$0342,$0345],        	// (ῷ; ῷ; ω◌͂◌ͅ; ῷ; ω◌͂◌ͅ; ) GREEK SMALL LETTER OMEGA WITH PERISPOMENI AND YPOGEGRAMMENI
+        [$039F,$0300],              	// (Ὸ; Ὸ; Ο◌̀; Ὸ; Ο◌̀; ) GREEK CAPITAL LETTER OMICRON WITH VARIA
+        [$039F,$0301],              	// (Ό; Ό; Ο◌́; Ό; Ο◌́; ) GREEK CAPITAL LETTER OMICRON WITH OXIA
+        [$03A9,$0300],              	// (Ὼ; Ὼ; Ω◌̀; Ὼ; Ω◌̀; ) GREEK CAPITAL LETTER OMEGA WITH VARIA
+        [$03A9,$0301],              	// (Ώ; Ώ; Ω◌́; Ώ; Ω◌́; ) GREEK CAPITAL LETTER OMEGA WITH OXIA
+        [$03A9,$0345],              	// (ῼ; ῼ; Ω◌ͅ; ῼ; Ω◌ͅ; ) GREEK CAPITAL LETTER OMEGA WITH PROSGEGRAMMENI
+        [$00B4]                    	// (´; ´; ´;  ◌́;  ◌́; ) GREEK OXIA
+      ];
