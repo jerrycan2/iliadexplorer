@@ -277,7 +277,7 @@ begin
         begin
             lvFillList(lvGreek, FPath + 'gr_il2.dat');
         end);
-    //Thread1.OnTerminate := StartGreekUpdateActions;
+    Thread1.OnTerminate := StartGreekUpdateActions;
     Thread1.Start;
     Thread2 := TThread.CreateAnonymousThread(
         procedure()
@@ -513,8 +513,10 @@ begin
   // Find the text drawable which is used to calcualte item size.
   // For dynamic appearance, use item name.
   // For classic appearances use TListViewItem.TObjectNames.Text
-  Drawable := TListItemText(AItem.View.FindDrawable(TListViewItem.TObjectNames.Text));
-  //Drawable := TListItemText(AItem.View.FindDrawable('T'));
+  // Drawable := TListItemText(AItem.View.FindDrawable(TListViewItem.TObjectNames.Text));
+  Drawable := TListItemText(AItem.View.FindDrawable('T'));
+  // if Drawable = nil then Drawable := TListItemText(AItem.View.FindDrawable('txtMain'));
+
   Text := AItem.Text;
   Drawable.Text := Text;
 

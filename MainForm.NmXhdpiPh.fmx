@@ -46,13 +46,6 @@ inherited Form1_NmXhdpiPh: TForm1_NmXhdpiPh
       ExplicitSize.cy = 26.000000000000000000
       inherited lvGreek: TListView
         Size.Width = 400.000000000000000000
-        ItemAppearanceObjects.ItemObjects.Text.Visible = False
-        ItemAppearanceObjects.ItemObjects.Image.ScalingMode = Original
-        ItemAppearanceObjects.ItemObjects.Image.Width = 16.000000000000000000
-        ItemAppearanceObjects.ItemObjects.Image.Height = 16.000000000000000000
-        ItemAppearanceObjects.ItemObjects.Image.VertAlign = Leading
-        ItemAppearanceObjects.ItemObjects.GlyphButton.Visible = True
-        ItemAppearanceObjects.ItemEditObjects.Detail.Align = Center
       end
     end
     inherited EngTab: TTabItem

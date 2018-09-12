@@ -150,10 +150,11 @@ object Form1: TForm1
       ExplicitSize.cx = 70.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object lvGreek: TListView
-        ItemAppearanceClassName = 'TCustomizeItemObjects'
-        ItemEditAppearanceClassName = 'TCustomizeItemObjects'
+        ItemAppearanceClassName = 'TImageListItemBottomDetailRightButtonAppearance'
+        ItemEditAppearanceClassName = 'TImageListItemBottomDetailRightButtonShowCheckAppearance'
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
+        AlternatingColors = True
         Images = ImageList1
         ItemSpaces.Left = 0.000000000000000000
         ItemSpaces.Right = 0.000000000000000000
@@ -163,25 +164,6 @@ object Form1: TForm1
         Size.PlatformDefault = False
         TabOrder = 0
         OnResize = lvItemResize
-        ItemAppearanceObjects.ItemObjects.Text.Font.Family = 'Lucida Sans Unicode'
-        ItemAppearanceObjects.ItemObjects.Text.WordWrap = True
-        ItemAppearanceObjects.ItemObjects.Text.TextColor = claTeal
-        ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.X = 48.000000000000000000
-        ItemAppearanceObjects.ItemObjects.Detail.Visible = True
-        ItemAppearanceObjects.ItemObjects.Image.Visible = True
-        ItemAppearanceObjects.ItemObjects.Accessory.Visible = True
-        ItemAppearanceObjects.ItemEditObjects.Text.Visible = False
-        ItemAppearanceObjects.ItemEditObjects.Detail.TextVertAlign = Leading
-        ItemAppearanceObjects.ItemEditObjects.Detail.Trimming = None
-        ItemAppearanceObjects.ItemEditObjects.Detail.Visible = True
-        ItemAppearanceObjects.ItemEditObjects.Detail.PlaceOffset.X = -40.000000000000000000
-        ItemAppearanceObjects.ItemEditObjects.Image.Visible = True
-        ItemAppearanceObjects.ItemEditObjects.GlyphButton.Width = 16.000000000000000000
-        ItemAppearanceObjects.ItemEditObjects.GlyphButton.Height = 16.000000000000000000
-        ItemAppearanceObjects.ItemEditObjects.GlyphButton.VertAlign = Trailing
-        ItemAppearanceObjects.ItemEditObjects.GlyphButton.Visible = True
-        ItemAppearanceObjects.ItemEditObjects.GlyphButton.PlaceOffset.X = 4.000000000000000000
-        ItemAppearanceObjects.ItemEditObjects.GlyphButton.PlaceOffset.Y = 17.000000000000000000
         StyleLookup = 'listviewstyle'
       end
     end

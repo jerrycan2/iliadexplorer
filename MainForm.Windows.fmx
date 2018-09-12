@@ -12,6 +12,7 @@ inherited Form1_Windows: TForm1_Windows
       411s
       480s)
     inherited HomeTab: TTabItem
+      IsSelected = True
       Size.Width = 71.000000000000000000
       ExplicitSize.cx = 71.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
@@ -30,11 +31,6 @@ inherited Form1_Windows: TForm1_Windows
       Size.Width = 70.000000000000000000
       ExplicitSize.cx = 70.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
-      inherited lvGreek: TListView
-        ItemAppearanceObjects.ItemObjects.Text.Visible = False
-        ItemAppearanceObjects.ItemObjects.GlyphButton.Visible = True
-        ItemAppearanceObjects.ItemEditObjects.Detail.Align = Center
-      end
     end
     inherited EngTab: TTabItem
       Size.Width = 59.000000000000000000
